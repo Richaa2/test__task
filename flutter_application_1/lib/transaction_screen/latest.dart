@@ -12,9 +12,12 @@ class LatestTransaction extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(
-              'Latest Transactions',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, bottom: 5),
+              child: Text(
+                'Latest Transactions',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
             ),
           ],
         ),

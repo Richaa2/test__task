@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../consts.dart';
 
@@ -41,6 +42,8 @@ class ContainerBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = DateFormat.MMMM().format(DateTime.now());
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: BorderRadius.circular(15)),
@@ -50,7 +53,10 @@ class ContainerBig extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('No Payment Due'),
-          Text('You’ve paid your <Поточний місяць> balance'),
+          Text(
+            'You’ve paid your $date balance',
+            style: TextStyle(color: Colors.grey),
+          ),
           Spacer(),
           Row(
             children: [

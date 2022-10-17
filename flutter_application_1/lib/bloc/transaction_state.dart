@@ -27,7 +27,7 @@ class TransactionLoaded extends TransactionState {
       name: 'Apple',
       describe: 'Card number used',
       pending: true,
-      dateTime: DateTime.now().subtract(Duration(hours: 22)),
+      dateTime: DateTime.now().subtract(Duration(hours: 23)),
       authorizedUser: true,
       icon: Icons.apple,
     ),
