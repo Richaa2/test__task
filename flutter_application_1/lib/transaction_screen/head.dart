@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/containers.dart';
+import '../components/containers.dart';
 
 class Head extends StatelessWidget {
   const Head({
