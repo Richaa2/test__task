@@ -22,8 +22,6 @@ class Head extends StatelessWidget {
     int balance = random.nextInt(1500);
     int avaliable = limitBalance - balance;
 
-    Future.delayed(Duration(seconds: 3))
-        .then((value) => context.read<PointCubit>().updateDay());
     context.read<PointCubit>().updateDay();
 
     return Row(
@@ -52,11 +50,26 @@ class Head extends StatelessWidget {
               BlocConsumer<PointCubit, PointState>(
                 listener: (context, state) {
                   dev.log(state.toString());
+                  if (state is PointLoadedState &&
+                      DateTime.now().difference(state.lastUpdate).inSeconds >
+                          24 * 60 * 60) {
+                    context.read<PointCubit>().updateDay();
+                  }
                 },
                 builder: (context, state) {
-                  return Text(
-                      state is PointLoadedState ? '${state.pointSum}' : '',
-                      style: TextStyle(color: Colors.grey));
+                  if (state is PointLoadedState) {
+                    int sum;
+                    state.pointSum > 1000
+                        ? sum = (state.pointSum / 1000.0).round() * 1000
+                        : sum = state.pointSum;
+                    String sumString;
+                    sum >= 1000
+                        ? sumString = (sum / 1000).round().toString() + 'K'
+                        : sumString = sum.toString();
+                    return Text('${sumString}',
+                        style: TextStyle(color: Colors.grey));
+                  }
+                  return Text('');
                 },
               )
             ]),

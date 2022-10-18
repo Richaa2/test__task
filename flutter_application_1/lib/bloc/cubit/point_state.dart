@@ -8,11 +8,8 @@ class PointInitial extends PointState {}
 class PointLastUpdateState extends PointState {}
 
 class PointLoadedState extends PointState {
-  DateTime lastUpdate =
-      DateTime.now().subtract(Duration(hours: 24, minutes: 1));
-  // var mouth = DateTime.now().month;
-  // var day = DateTime.now().day;
-  double pointSum;
+  DateTime lastUpdate = DateTime.now().subtract(Duration(hours: 24));
+  int pointSum;
   int pointYesterday;
   int pointBeforeYesterday;
 
