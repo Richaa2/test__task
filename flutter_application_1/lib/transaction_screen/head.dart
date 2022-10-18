@@ -1,7 +1,10 @@
+import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/cubit/point_cubit.dart';
 import 'package:flutter_application_1/consts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/containers.dart';
 
@@ -18,6 +21,10 @@ class Head extends StatelessWidget {
     Random random = Random();
     int balance = random.nextInt(1500);
     int avaliable = limitBalance - balance;
+
+    Future.delayed(Duration(seconds: 3))
+        .then((value) => context.read<PointCubit>().updateDay());
+    context.read<PointCubit>().updateDay();
 
     return Row(
       children: [
@@ -42,7 +49,16 @@ class Head extends StatelessWidget {
                 'Daily Points',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text('456K', style: TextStyle(color: Colors.grey))
+              BlocConsumer<PointCubit, PointState>(
+                listener: (context, state) {
+                  dev.log(state.toString());
+                },
+                builder: (context, state) {
+                  return Text(
+                      state is PointLoadedState ? '${state.pointSum}' : '',
+                      style: TextStyle(color: Colors.grey));
+                },
+              )
             ]),
           ],
         ),

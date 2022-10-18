@@ -28,13 +28,11 @@ class ListViewWidget extends StatelessWidget {
         late bool isYesterday;
         late bool thisWeek;
         var today = DateTime.now();
-        if (transaction.dateTime.year == today.year &&
-            transaction.dateTime.month == today.month &&
-            transaction.dateTime.day == today.day) {
-          isToday = true;
-        } else {
-          isToday = false;
-        }
+        transaction.dateTime.year == today.year &&
+                transaction.dateTime.month == today.month &&
+                transaction.dateTime.day == today.day
+            ? isToday = true
+            : isToday = false;
 
         if (DateTime.now()
                 .difference(transaction.dateTime)
@@ -54,17 +52,16 @@ class ListViewWidget extends StatelessWidget {
           thisWeek = false;
         }
 
-        if (thisWeek == true && isYesterday == false) {
-          time = DateFormat('EEEE').format(transaction.dateTime);
-        } else if (thisWeek == false) {
-          time = DateFormat.yMd().format(transaction.dateTime);
-        } else if (thisWeek == true &&
-            isYesterday == true &&
-            isToday == false) {
-          time = 'Yesterday';
-        } else if (thisWeek == true && isToday == true) {
-          time = DateFormat.Hm().format(transaction.dateTime) + ' Today';
-        }
+        thisWeek == true && isYesterday == false
+            ? time = DateFormat('EEEE').format(transaction.dateTime)
+            : thisWeek == false
+                ? time = DateFormat.yMd().format(transaction.dateTime)
+                : thisWeek == true && isYesterday == true && isToday == false
+                    ? time = 'Yesterday'
+                    : thisWeek == true && isToday == true
+                        ? time = DateFormat.Hm().format(transaction.dateTime) +
+                            ' Today'
+                        : time = '';
 
         transaction.payment == true
             ? title = 'Payment'
@@ -73,11 +70,10 @@ class ListViewWidget extends StatelessWidget {
         transaction.pending == true
             ? subTitle = 'Pending - ' + transaction.describe
             : subTitle = transaction.describe;
-        if (subTitle.toString().length > 25) {
-          subTitle = subTitle.toString().replaceRange(25, null, '...');
-        }
+        subTitle.toString().length > 25
+            ? subTitle = subTitle.toString().replaceRange(25, null, '...')
+            : subTitle;
 
-        print(subTitle.toString().replaceRange(10, null, '...'));
         transaction.authorizedUser == true
             ? time = transaction.nameOfUser! + ' — ' + time
             : time;

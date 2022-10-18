@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/cubit/point_cubit.dart';
 import 'package:flutter_application_1/transaction_screen/transactions_list_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,10 +15,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TransactionBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TransactionBloc(),
+        ),
+        BlocProvider(
+          create: (context) => PointCubit(),
+        ),
+      ],
       child: MaterialApp(
-        title: 'Flutter Demo',
         theme: ThemeData(scaffoldBackgroundColor: Colors.grey.shade200),
         home: TransactionsListScreen(),
       ),
