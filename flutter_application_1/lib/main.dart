@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/bloc/cubit/point_cubit.dart';
+import 'package:flutter_application_1/transaction_detail.dart';
 import 'package:flutter_application_1/transaction_screen/transactions_list_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData(scaffoldBackgroundColor: Colors.grey.shade200),
+        theme: ThemeData(scaffoldBackgroundColor: Colors.grey.shade300),
         home: TransactionsListScreen(),
       ),
     );

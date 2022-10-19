@@ -53,7 +53,7 @@ class ListViewWidget extends StatelessWidget {
         }
 
         thisWeek == true && isYesterday == false
-            ? time = DateFormat('EEEE').format(transaction.dateTime)
+            ? time = DateFormat.EEEE().format(transaction.dateTime)
             : thisWeek == false
                 ? time = DateFormat.yMd().format(transaction.dateTime)
                 : thisWeek == true && isYesterday == true && isToday == false
