@@ -1,36 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../consts.dart';
-
-class ContainerSmall extends StatelessWidget {
-  const ContainerSmall({
-    Key? key,
-    required this.screenSize,
-    required this.children,
-  }) : super(key: key);
-
-  final Size screenSize;
-
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: children),
-      ),
-      decoration:
-          BoxDecoration(color: white, borderRadius: BorderRadius.circular(15)),
-      width: screenSize.width / 2 - 30,
-      height: heightContainer,
-    );
-  }
-}
+import '../../consts.dart';
 
 class ContainerBig extends StatelessWidget {
   const ContainerBig({
@@ -52,19 +23,19 @@ class ContainerBig extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('No Payment Due'),
+          const Text('No Payment Due'),
           Text(
             'You’ve paid your $date balance',
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             children: [
-              Spacer(),
+              const Spacer(),
               CircleAvatar(
                 radius: 30,
                 backgroundColor: Colors.grey.shade300,
-                child: Icon(
+                child: const Icon(
                   Icons.check,
                   color: Colors.black,
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_application_1/transaction_screen/latest.dart';
+import 'package:flutter_application_1/transaction_screen/latest_transactions/latest.dart';
 
-import 'head.dart';
+import 'head/head.dart';
 
 class TransactionsListScreen extends StatelessWidget {
   const TransactionsListScreen({super.key});

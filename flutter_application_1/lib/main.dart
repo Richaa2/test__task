@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/bloc/cubit/point_cubit.dart';
-import 'package:flutter_application_1/transaction_detail.dart';
+import 'package:flutter_application_1/transaction_repository.dart';
+
 import 'package:flutter_application_1/transaction_screen/transactions_list_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/transaction_bloc.dart';
+import 'bloc/point_cubit/point_cubit.dart';
+import 'bloc/transaction_bloc/transaction_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,21 +14,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => TransactionBloc(),
+    return RepositoryProvider(
+      create: (context) => TransactionRepository(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => TransactionBloc(
+                transactionRepository:
+                    RepositoryProvider.of<TransactionRepository>(context)),
+          ),
+          BlocProvider(
+            create: (context) => PointCubit(),
+          ),
+        ],
+        child: MaterialApp(
+          theme: ThemeData(scaffoldBackgroundColor: Colors.grey.shade300),
+          home: const TransactionsListScreen(),
         ),
-        BlocProvider(
-          create: (context) => PointCubit(),
-        ),
-      ],
-      child: MaterialApp(
-        theme: ThemeData(scaffoldBackgroundColor: Colors.grey.shade300),
-        home: TransactionsListScreen(),
       ),
     );
   }
